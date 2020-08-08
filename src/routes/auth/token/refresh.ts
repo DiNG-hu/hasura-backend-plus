@@ -56,7 +56,8 @@ async function refreshToken({ cookies, signedCookies }: Request, res: Response):
 
   return res.send({
     jwt_token: createHasuraJwt(account),
-    jwt_expires_in: newJwtExpiry
+    jwt_expires_in: newJwtExpiry,
+    refresh_token: new_refresh_token
   })
 }
 

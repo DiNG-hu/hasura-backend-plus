@@ -65,7 +65,7 @@ export const setRefreshToken = async (
   res: Response,
   accountId: string,
   refresh_token?: string
-): Promise<void> => {
+): Promise<string> => {
   if (!refresh_token) {
     refresh_token = uuidv4()
   }
@@ -83,4 +83,6 @@ export const setRefreshToken = async (
   const permission_variables = JSON.stringify(generatePermissionVariables(account))
 
   setCookie(res, refresh_token, permission_variables)
+  
+  return refresh_token
 }

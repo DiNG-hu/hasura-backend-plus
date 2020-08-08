@@ -85,11 +85,12 @@ async function loginAccount({ body }: Request, res: Response): Promise<unknown> 
     return res.send({ mfa: true, ticket })
   }
 
-  await setRefreshToken(res, id)
+  const refesh_token = await setRefreshToken(res, id)
 
   return res.send({
     jwt_token: createHasuraJwt(account),
-    jwt_expires_in: newJwtExpiry
+    jwt_expires_in: newJwtExpiry,
+    refresh_token: refesh_token
   })
 }
 

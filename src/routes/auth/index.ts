@@ -3,7 +3,8 @@ import {
   CHANGE_EMAIL_ENABLE,
   AUTO_ACTIVATE_NEW_USERS,
   ALLOW_USER_SELF_DELETE,
-  AUTH_LOCAL_USERS_ENABLE
+  AUTH_LOCAL_USERS_ENABLE,
+  ME_ENABLE
 } from '@shared/config'
 import { Router } from 'express'
 import nocache from 'nocache'
@@ -18,6 +19,7 @@ import registerAccount from './register'
 import token from './token'
 import activateAccount from './activate'
 import deleteAccount from './delete'
+import accountMe from './me'
 
 const router = Router()
 
@@ -37,6 +39,10 @@ if (CHANGE_EMAIL_ENABLE) {
 
 if (!AUTO_ACTIVATE_NEW_USERS) {
   router.get('/activate', activateAccount)
+}
+
+if (ME_ENABLE) {
+  router.get('/me', accountMe)
 }
 
 if (ALLOW_USER_SELF_DELETE) {

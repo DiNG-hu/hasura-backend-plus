@@ -4,7 +4,8 @@ import {
   rotateTicket as rotateTicketQuery,
   selectAccountByEmail as selectAccountByEmailQuery,
   selectAccountByTicket as selectAccountByTicketQuery,
-  selectAccountByUserId as selectAccountByUserIdQuery
+  selectAccountByUserId as selectAccountByUserIdQuery,
+  selectUserByUserId as selectUserByUserIdQuery
 } from './queries'
 
 import Boom from '@hapi/boom'
@@ -13,7 +14,7 @@ import bcrypt from 'bcryptjs'
 import { pwnedPassword } from 'hibp'
 import { request } from './request'
 import { v4 as uuidv4 } from 'uuid'
-import { AccountData, QueryAccountData, PermissionVariables } from './types'
+import { AccountData, QueryAccountData, UserData, QueryUserData, PermissionVariables} from './types'
 
 /**
  * Create QR code.
@@ -57,6 +58,16 @@ export const selectAccountByUserId = async (user_id: string | undefined): Promis
   const hasuraData = await request<QueryAccountData>(selectAccountByUserIdQuery, { user_id })
   if (!hasuraData.auth_accounts[0]) throw Boom.badRequest('Account does not exist.')
   return hasuraData.auth_accounts[0]
+}
+
+// TODO await request returns undefined if no user found!
+export const selectUserByUserId = async (user_id: string | undefined): Promise<UserData> => {
+  if (!user_id) {
+    throw Boom.badRequest('Invalid User Id.')
+  }
+  const hasuraData = await request<QueryUserData>(selectUserByUserIdQuery, { user_id })
+  if (!hasuraData.users[0]) throw Boom.badRequest('user does not exist.')
+  return hasuraData.users[0]
 }
 
 /**
@@ -118,3 +129,4 @@ export const getPermissionVariablesFromCookie = (req: Request): PermissionVariab
   if (!permission_variables) throw Boom.unauthorized()
   return JSON.parse(permission_variables)
 }
+

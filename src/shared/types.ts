@@ -49,6 +49,7 @@ export interface UserData {
 }
 
 export interface AccountData {
+  account: AccountData[]
   id: string
   user: UserData
   active: boolean
@@ -64,6 +65,12 @@ export interface AccountData {
 }
 
 export interface QueryAccountData {
+  users: UserData[]
+  auth_accounts: AccountData[]
+}
+
+export interface QueryUserData {
+  users: UserData[]
   auth_accounts: AccountData[]
 }
 

@@ -23,6 +23,20 @@ const accountFragment = gql`
   }
 `
 
+const userFragment = gql`
+  fragment userFragment on users {
+    id
+    display_name
+    avatar_url
+    created_at
+    account {
+      active
+      default_role
+      email
+    }
+  }
+`
+
 export const insertAccount = gql`
   mutation($account: auth_accounts_insert_input!) {
     insert_auth_accounts(objects: [$account]) {
@@ -75,6 +89,15 @@ export const selectAccountByUserId = gql`
     }
   }
   ${accountFragment}
+`
+
+export const selectUserByUserId = gql`
+  query($user_id: uuid!) {
+    users(where: {  id: { _eq: $user_id }  }) {
+      ...userFragment
+    }
+  }
+  ${userFragment}
 `
 
 export const selectAccountByEmail = gql`
