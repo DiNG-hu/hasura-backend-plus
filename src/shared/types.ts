@@ -1,3 +1,5 @@
+import { Request } from 'express'
+
 export type ClaimValueType =
   | string
   | string[]
@@ -95,5 +97,30 @@ export interface QueryAccountProviderData {
 export interface InsertAccountData {
   insert_auth_accounts: {
     returning: AccountData[]
+  }
+}
+
+export interface InsertAccountProviderToUser {
+  insert_auth_account_providers_one: {
+    account: AccountData
+  }
+}
+
+export interface RefreshTokenMiddleware {
+  value: string | null
+  type: 'query' | 'cookie' | null
+}
+
+export interface RequestExtended extends Request {
+  refresh_token?: RefreshTokenMiddleware
+  permission_variables?: PermissionVariables
+}
+
+export interface SetNewEmailData {
+  update_auth_accounts: {
+    returning: {
+      user: UserData
+    }[]
+    affected_rows: number
   }
 }

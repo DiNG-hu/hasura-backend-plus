@@ -19,6 +19,9 @@ interface HasuraData {
 }
 
 async function loginAccount({ body }: Request, res: Response): Promise<unknown> {
+  // default to true
+  const useCookie = typeof body.cookie !== 'undefined' ? body.cookie : true
+
   if (ANONYMOUS_USERS_ENABLE) {
     const { anonymous } = await loginAnonymouslySchema.validateAsync(body)
 
@@ -53,12 +56,26 @@ async function loginAccount({ body }: Request, res: Response): Promise<unknown> 
 
       const account = hasura_data.insert_auth_accounts.returning[0]
 
-      await setRefreshToken(res, account.id)
+      const refresh_token = await setRefreshToken(res, account.id, useCookie)
 
-      return res.send({
-        jwt_token: createHasuraJwt(account),
-        jwt_expires_in: newJwtExpiry
-      })
+      const jwt_token = createHasuraJwt(account)
+      const jwt_expires_in = newJwtExpiry
+
+      // return
+      if (useCookie) {
+        res.send({
+          jwt_token,
+          jwt_expires_in
+        })
+      } else {
+        res.send({
+          jwt_token,
+          jwt_expires_in,
+          refresh_token
+        })
+      }
+
+      return
     }
   }
 
@@ -78,20 +95,33 @@ async function loginAccount({ body }: Request, res: Response): Promise<unknown> 
   }
 
   if (!(await bcrypt.compare(password, password_hash))) {
-    throw Boom.unauthorized('Password does not match.')
+    throw Boom.unauthorized('Username and password do not match')
   }
 
   if (mfa_enabled) {
     return res.send({ mfa: true, ticket })
   }
 
-  const refesh_token = await setRefreshToken(res, id)
+  // refresh_token
+  const refresh_token = await setRefreshToken(res, id, useCookie)
 
-  return res.send({
-    jwt_token: createHasuraJwt(account),
-    jwt_expires_in: newJwtExpiry,
-    refresh_token: refesh_token
-  })
+  // generate JWT
+  const jwt_token = createHasuraJwt(account)
+  const jwt_expires_in = newJwtExpiry
+
+  // return
+  if (useCookie) {
+    res.send({
+      jwt_token,
+      jwt_expires_in
+    })
+  } else {
+    res.send({
+      jwt_token,
+      jwt_expires_in,
+      refresh_token
+    })
+  }
 }
 
 export default asyncWrapper(loginAccount)

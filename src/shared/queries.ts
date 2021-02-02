@@ -11,6 +11,7 @@ const accountFragment = gql`
     }
     user {
       id
+      display_name
       ${JWT_CUSTOM_FIELDS.join('\n\t\t\t')}
     }
     is_anonymous
@@ -44,6 +45,20 @@ export const insertAccount = gql`
       returning {
         ...accountFragment
       }
+    }
+  }
+  ${accountFragment}
+`
+
+export const insertAccountProviderToUser = gql`
+  mutation($account_provider: auth_account_providers_insert_input!, $account_id: uuid!) {
+    insert_auth_account_providers_one(object: $account_provider) {
+      account {
+        ...accountFragment
+      }
+    }
+    update_auth_accounts(_set: { active: true }, where: { id: { _eq: $account_id } }) {
+      affected_rows
     }
   }
   ${accountFragment}
@@ -268,6 +283,11 @@ export const setNewEmail = gql`
       where: { user: { id: { _eq: $user_id } } }
       _set: { new_email: $new_email }
     ) {
+      returning {
+        user {
+          display_name
+        }
+      }
       affected_rows
     }
   }
