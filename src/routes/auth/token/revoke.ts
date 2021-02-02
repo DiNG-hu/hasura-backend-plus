@@ -1,9 +1,9 @@
 import { Response } from 'express'
 import Boom from '@hapi/boom'
-import { asyncWrapper } from '@shared/helpers'
-import { deleteAllAccountRefreshTokens } from '@shared/queries'
-import { request } from '@shared/request'
-import { RequestExtended } from '@shared/types'
+import { asyncWrapper } from '../../../shared/helpers'
+import { deleteAllAccountRefreshTokens } from '../../../shared/queries'
+import { request } from '../../../shared/request'
+import { RequestExtended } from '../../../shared/types'
 
 async function revokeToken(req: RequestExtended, res: Response): Promise<unknown> {
   if (!req.permission_variables) {

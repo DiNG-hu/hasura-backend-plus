@@ -1,6 +1,6 @@
 import 'jest-extended'
 
-import { account, request } from '@test/test-mock-account'
+import { account, request } from '../../../test/test-mock-account'
 
 it('should refresh the token', async () => {
   const { body, status } = await request.get('/auth/token/refresh')

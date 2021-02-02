@@ -1,4 +1,4 @@
-import { MAX_REQUESTS, TIME_FRAME } from '@shared/config'
+import { MAX_REQUESTS, TIME_FRAME } from './shared/config'
 import rateLimit, { Message } from 'express-rate-limit'
 
 /**

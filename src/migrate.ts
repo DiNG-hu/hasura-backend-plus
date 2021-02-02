@@ -7,8 +7,9 @@ import cors from 'cors'
 import express from 'express'
 import helmet from 'helmet'
 import TMP from 'temp-dir'
-import { HASURA_ENDPOINT, HASURA_GRAPHQL_ADMIN_SECRET, HOST, PORT } from '@shared/config'
+import { HASURA_ENDPOINT, HASURA_GRAPHQL_ADMIN_SECRET, HOST, PORT } from './shared/config'
 import getJwks from './routes/auth/jwks'
+import { rejects } from 'assert'
 
 const LOG_LEVEL = process.env.NODE_ENV === 'production' ? 'ERROR' : 'INFO'
 const TEMP_MIGRATION_DIR = `${TMP}/hasura-backend-plus-temp-migrations`
@@ -103,7 +104,7 @@ export default async (
         await remove(TEMP_MIGRATION_DIR)
         server.close()
       })
-      server.on('close', () => resolve())
+      server.on('close', (): void => resolve(true))
     } catch (err) {
       reject(err)
     }

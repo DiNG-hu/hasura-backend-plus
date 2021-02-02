@@ -1,14 +1,14 @@
 import { Request, Response } from 'express'
-import { asyncWrapper, rotateTicket, selectAccountByTicket } from '@shared/helpers'
-import { changeEmailByTicket } from '@shared/queries'
+import { asyncWrapper, rotateTicket, selectAccountByTicket } from '../../../shared/helpers'
+import { changeEmailByTicket } from '../../../shared/queries'
 
 import Boom from '@hapi/boom'
-import { request } from '@shared/request'
-import { verifySchema } from '@shared/validation'
-import { UpdateAccountData } from '@shared/types'
+import { request } from '../../../shared/request'
+import { verifySchema } from '../../../shared/validation'
+import { UpdateAccountData } from '../../../shared/types'
 import { v4 as uuidv4 } from 'uuid'
-import { NOTIFY_EMAIL_CHANGE, EMAILS_ENABLE, SERVER_URL } from '@shared/config'
-import { emailClient } from '@shared/email'
+import { NOTIFY_EMAIL_CHANGE, EMAILS_ENABLE, SERVER_URL } from '../../../shared/config'
+import { emailClient } from '../../../shared/email'
 
 async function changeEmail({ body }: Request, res: Response): Promise<unknown> {
   const { ticket } = await verifySchema.validateAsync(body)

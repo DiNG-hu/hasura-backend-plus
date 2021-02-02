@@ -1,5 +1,5 @@
 import { ALLOWED_EMAIL_DOMAINS, REGISTRATION_CUSTOM_FIELDS, MIN_PASSWORD_LENGTH } from './config'
-import Joi from '@hapi/joi'
+import Joi from 'joi'
 
 interface ExtendedStringSchema extends Joi.StringSchema {
   allowedDomains(): this

@@ -5,7 +5,7 @@ import {
   ALLOW_USER_SELF_DELETE,
   AUTH_LOCAL_USERS_ENABLE,
   ME_ENABLE
-} from '@shared/config'
+} from '../../shared/config'
 import { Router } from 'express'
 import nocache from 'nocache'
 import changeEmail from './change-email'

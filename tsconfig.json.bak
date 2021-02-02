@@ -1,0 +1,33 @@
+{
+  "exclude": ["node_modules/**", "**/*.spec.ts", "*.js"],
+  "include": ["src/**/*"],
+  "compilerOptions": {
+    // "noLib": true,
+    // "lib": ["dom", "es2020"],
+    // "paths": {
+    //   "*": ["src/types/*"],
+    //   "@shared/*": ["src/shared/*"],
+    //   "@test/*": ["src/test/*"]
+    // },
+    "baseUrl": ".",
+    "outDir": "dist",
+
+    // "rootDirs": ["src", "dist"],
+    "typeRoots": ["./types/", "./node_modules/@types/"],
+    "types": ["node", "jest", "express", "jose"],
+    "strict": true,
+    "target": "ES6",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "noUnusedLocals": false,
+    "strictNullChecks": true,
+    "resolveJsonModule": true,
+    "noImplicitAny": false,
+    "removeComments": false,
+    "preserveConstEnums": true,
+    "sourceMap": false
+  }
+}

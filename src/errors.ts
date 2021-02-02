@@ -1,5 +1,5 @@
 import { NextFunction, Response } from 'express'
-import { RequestExtended } from '@shared/types'
+import { RequestExtended } from './shared/types'
 
 interface Error {
   output?: {

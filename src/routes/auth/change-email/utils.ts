@@ -1,7 +1,7 @@
-import { selectAccountByEmail } from '@shared/helpers'
-import { emailResetSchema } from '@shared/validation'
+import { selectAccountByEmail } from '../../../shared/helpers'
+import { emailResetSchema } from '../../../shared/validation'
 import Boom from '@hapi/boom'
-import { RequestExtended } from '@shared/types'
+import { RequestExtended } from '../../../shared/types'
 
 export const getRequestInfo = async (
   req: RequestExtended

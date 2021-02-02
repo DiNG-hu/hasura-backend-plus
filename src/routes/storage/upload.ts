@@ -3,11 +3,11 @@ import { v4 as uuidv4 } from 'uuid'
 import { PathConfig, createContext, getHeadObject, getKey, hasPermission } from './utils'
 
 import Boom from '@hapi/boom'
-import { S3_BUCKET } from '@shared/config'
+import { S3_BUCKET } from '../../shared/config'
 import { UploadedFile } from 'express-fileupload'
-import { s3 } from '@shared/s3'
-import { RequestExtended } from '@shared/types'
-import { fileMetadataUpdate } from '@shared/validation'
+import { s3 } from '../../shared/s3'
+import { RequestExtended } from '../../shared/types'
+import { fileMetadataUpdate } from '../../shared/validation'
 
 export const uploadFile = async (
   req: RequestExtended,

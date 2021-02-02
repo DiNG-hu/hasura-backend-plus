@@ -1,10 +1,10 @@
 import { Response } from 'express'
 
 import Boom from '@hapi/boom'
-import { asyncWrapper } from '@shared/helpers'
-import { deleteAccountByUserId } from '@shared/queries'
-import { request } from '@shared/request'
-import { DeleteAccountData, RequestExtended } from '@shared/types'
+import { asyncWrapper } from '../../shared/helpers'
+import { deleteAccountByUserId } from '../../shared/queries'
+import { request } from '../../shared/request'
+import { DeleteAccountData, RequestExtended } from '../../shared/types'
 
 async function deleteUser(req: RequestExtended, res: Response): Promise<unknown> {
   if (!req.permission_variables) {

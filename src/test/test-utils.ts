@@ -1,8 +1,9 @@
+import { object } from 'joi'
 import fetch, { Response } from 'node-fetch'
 import request, { SuperTest, Test } from 'supertest'
 
-import { SMTP_HOST, AUTO_ACTIVATE_NEW_USERS } from '@shared/config'
-import { generateRandomString, selectAccountByEmail } from '@shared/helpers'
+import { SMTP_HOST, AUTO_ACTIVATE_NEW_USERS } from '../shared/config'
+import { generateRandomString, selectAccountByEmail } from '../shared/helpers'
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 console.error = function (): void {} // Disable the errors that will be raised by the tests
@@ -78,8 +79,11 @@ export const initAgent = (
     [key: string]: boolean | string | number | string[] | undefined | object
   } = {}
 ): SuperTest<Test> => {
-  jest.mock('@shared/config', () => ({
-    ...jest.requireActual('@shared/config'),
+
+  const jestActual = jest.requireActual('../shared/config')
+
+  jest.mock('../shared/config', () => ({
+    ...jestActual,
     ...config
   }))
   jest.resetModules() // TODO only reset '../server'

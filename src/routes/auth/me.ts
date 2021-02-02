@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import Boom from '@hapi/boom'
-import { asyncWrapper, selectUserByUserId} from '@shared/helpers'
-import { getClaims } from '@shared/jwt'
+import { asyncWrapper, selectUserByUserId} from '../../shared/helpers'
+import { getClaims } from '../../shared/jwt'
 
 async function accountMe(req: Request, res: Response): Promise<unknown> {
     const claims = getClaims(req.headers.authorization);

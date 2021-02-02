@@ -3,7 +3,7 @@ import { NextFunction, Response, Router } from 'express'
 import { deleteFile } from './delete'
 import { listGet } from './list_get'
 import { uploadFile } from './upload'
-import { RequestExtended } from '@shared/types'
+import { RequestExtended } from '../../shared/types'
 
 const router = Router()
 

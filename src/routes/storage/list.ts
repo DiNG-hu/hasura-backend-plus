@@ -2,10 +2,10 @@ import { NextFunction, Response } from 'express'
 import { PathConfig, createContext, getKey, hasPermission } from './utils'
 
 import Boom from '@hapi/boom'
-import { S3_BUCKET } from '@shared/config'
+import { S3_BUCKET } from '../../shared/config'
 import archiver from 'archiver'
-import { s3 } from '@shared/s3'
-import { RequestExtended } from '@shared/types'
+import { s3 } from '../../shared/s3'
+import { RequestExtended } from '../../shared/types'
 
 export const listFile = async (
   req: RequestExtended,

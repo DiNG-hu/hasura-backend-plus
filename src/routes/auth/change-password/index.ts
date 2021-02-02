@@ -1,6 +1,6 @@
 import { Router } from 'express'
 
-import { LOST_PASSWORD_ENABLE } from '@shared/config'
+import { LOST_PASSWORD_ENABLE } from '../../../shared/config'
 
 import lost from './lost'
 import change from './change'

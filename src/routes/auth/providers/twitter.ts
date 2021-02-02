@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { Strategy } from 'passport-twitter'
 import Boom from '@hapi/boom'
 import { initProvider } from './utils'
-import { PROVIDERS, COOKIE_SECRET } from '@shared/config'
+import { PROVIDERS, COOKIE_SECRET } from '../../../shared/config'
 import session from 'express-session'
 
 export default (router: Router): void => {

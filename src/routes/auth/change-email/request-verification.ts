@@ -2,15 +2,15 @@ import { Response } from 'express'
 import { v4 as uuidv4 } from 'uuid'
 import Boom from '@hapi/boom'
 
-import { setNewTicket, setNewEmail } from '@shared/queries'
-import { asyncWrapper } from '@shared/helpers'
-import { EMAILS_ENABLE, SERVER_URL } from '@shared/config'
-import { emailClient } from '@shared/email'
-import { request } from '@shared/request'
-import { SetNewEmailData } from '@shared/types'
+import { setNewTicket, setNewEmail } from '../../../shared/queries'
+import { asyncWrapper } from '../../../shared/helpers'
+import { EMAILS_ENABLE, SERVER_URL } from '../../../shared/config'
+import { emailClient } from '../../../shared/email'
+import { request } from '../../../shared/request'
+import { SetNewEmailData } from '../../../shared/types'
 
 import { getRequestInfo } from './utils'
-import { RequestExtended } from '@shared/types'
+import { RequestExtended } from '../../../shared/types'
 
 async function requestChangeEmail(req: RequestExtended, res: Response): Promise<unknown> {
   const { user_id, new_email } = await getRequestInfo(req)

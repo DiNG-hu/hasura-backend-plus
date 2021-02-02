@@ -2,11 +2,11 @@ import { Response } from 'express'
 import Boom from '@hapi/boom'
 import bcrypt from 'bcryptjs'
 
-import { asyncWrapper, checkHibp, hashPassword, selectAccountByUserId } from '@shared/helpers'
-import { changePasswordFromOldSchema } from '@shared/validation'
-import { updatePasswordWithUserId } from '@shared/queries'
-import { request } from '@shared/request'
-import { RequestExtended } from '@shared/types'
+import { asyncWrapper, checkHibp, hashPassword, selectAccountByUserId } from '../../../shared/helpers'
+import { changePasswordFromOldSchema } from '../../../shared/validation'
+import { updatePasswordWithUserId } from '../../../shared/queries'
+import { request } from '../../../shared/request'
+import { RequestExtended } from '../../../shared/types'
 
 /**
  * Change the password from the current one

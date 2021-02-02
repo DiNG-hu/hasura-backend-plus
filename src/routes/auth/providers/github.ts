@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import { Strategy } from 'passport-github2'
 import Boom from '@hapi/boom'
-import { PROVIDERS } from '@shared/config'
+import { PROVIDERS } from '../../../shared/config'
 import { initProvider } from './utils'
 
 export default (router: Router): void => {

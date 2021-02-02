@@ -6,17 +6,17 @@ import {
   DEFAULT_ALLOWED_USER_ROLES,
   ALLOWED_USER_ROLES,
   VERIFY_EMAILS
-} from '@shared/config'
+} from '../../shared/config'
 import { Request, Response } from 'express'
-import { asyncWrapper, checkHibp, hashPassword, selectAccount } from '@shared/helpers'
+import { asyncWrapper, checkHibp, hashPassword, selectAccount } from '../../shared/helpers'
 
 import Boom from '@hapi/boom'
-import { emailClient } from '@shared/email'
-import { insertAccount } from '@shared/queries'
-import { registerSchema } from '@shared/validation'
-import { request } from '@shared/request'
+import { emailClient } from '../../shared/email'
+import { insertAccount } from '../../shared/queries'
+import { registerSchema } from '../../shared/validation'
+import { request } from '../../shared/request'
 import { v4 as uuidv4 } from 'uuid'
-import { InsertAccountData } from '@shared/types'
+import { InsertAccountData } from '../../shared/types'
 
 async function registerAccount({ body }: Request, res: Response): Promise<unknown> {
   const {

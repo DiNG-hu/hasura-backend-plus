@@ -10,10 +10,10 @@ import {
   PROVIDERS,
   DEFAULT_USER_ROLE,
   DEFAULT_ALLOWED_USER_ROLES,
-} from '@shared/config'
-import { insertAccount, insertAccountProviderToUser, selectAccountProvider } from '@shared/queries'
-import { selectAccountByEmail } from '@shared/helpers'
-import { request } from '@shared/request'
+} from '../../../shared/config'
+import { insertAccount, insertAccountProviderToUser, selectAccountProvider } from '../../../shared/queries'
+import { selectAccountByEmail } from '../../../shared/helpers'
+import { request } from '../../../shared/request'
 import {
   InsertAccountData,
   QueryAccountProviderData,
@@ -21,8 +21,8 @@ import {
   UserData,
   RequestExtended,
   InsertAccountProviderToUser
-} from '@shared/types'
-import { setRefreshToken } from '@shared/cookies'
+} from '../../../shared/types'
+import { setRefreshToken } from '../../../shared/cookies'
 
 interface Constructable<T> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

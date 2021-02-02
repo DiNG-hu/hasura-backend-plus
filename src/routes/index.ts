@@ -1,4 +1,4 @@
-import { AUTH_ENABLE, STORAGE_ENABLE } from '@shared/config'
+import { AUTH_ENABLE, STORAGE_ENABLE } from '../shared/config'
 
 import { Router } from 'express'
 import auth from './auth'
