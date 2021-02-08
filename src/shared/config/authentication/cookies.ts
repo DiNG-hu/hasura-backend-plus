@@ -10,7 +10,7 @@ if (sameSiteEnv) {
     sameSite = Boolean(sameSiteEnv)
   } else if (sameSiteEnv === 'lax' || sameSiteEnv === 'strict' || sameSiteEnv === 'none') {
     sameSite = sameSiteEnv
-  } 
-} 
+  }
+}
 
 export const COOKIE_SAME_SITE = sameSite

@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { Strategy, Profile } from '@nicokaiser/passport-apple'
+import { Strategy, Profile } from 'passport-apple'
 import Boom from '@hapi/boom'
 import { PROVIDERS } from '../../../shared/config'
 import { initProvider } from './utils'

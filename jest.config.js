@@ -1,3 +1,5 @@
+// @filename: jest.config.js
+
 module.exports = {
   globalSetup: './src/test/jest-global-setup.ts',
   verbose: true,

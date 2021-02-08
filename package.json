@@ -7,27 +7,23 @@
   },
   "version": "2.2.2",
   "main": "dist/start.js",
-  "___scripts": {
-    "build": "tsc",
+  "scripts": {
+    "clean": "rimraf ./dist/**",
+    "__prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
+    "build": "rimraf ./dist/** && tsc -p .",
+    "build:live": "nodemon --watch 'src/**/*.ts' --exec \"ts-node -r tsconfig-paths/register\" src/index.ts",
+    "start": "node -r ./dist/start.js",
+    "run-ts": "ts-node -r tsconfig-paths/register -O '{\"module\":\"commonjs\",\"noImplicitAny\":false}'",
+    "run-ts-dev": "ts-node-dev -r tsconfig-paths/register src/ts-start.ts",
     "dev": "ts-node-dev -r tsconfig-paths/register --no-notify src/ts-start.ts",
     "dev:docker": "ts-node-dev -r tsconfig-paths/register --no-deps --respawn --poll --interval 1000 --no-notify src/ts-start.ts",
     "docs:build": "vuepress build docs",
     "docs:dev": "vuepress dev docs",
-    "start": "node -r ./dist/start.js",
     "test": "NODE_ENV=test jest --coverage --forceExit --runInBand",
     "test:ci": "NODE_ENV=ci jest --coverage --forceExit --runInBand",
     "test:watch": "NODE_ENV=test jest --watchAll --maxWorkers=1",
-    "report-coverage": "codecov"
-  },
-  "scripts": {
-    "start": "npm run build:live",
-    "build": "tsc -p .",
-    "build:live": "nodemon --watch 'src/**/*.ts' --exec \"ts-node\" src/index.ts"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
+    "report-coverage": "codecov",
+    "compiler:config:dump": "tsc -p . --showConfig"
   },
   "dependencies": {
     "@hapi/boom": "9.1.1",
@@ -50,7 +46,7 @@
     "graphql": "15.5.0",
     "graphql-request": "3.4.0",
     "graphql-tag": "2.11.0",
-    "hasura-cli": "1.3.3",
+    "hasura-cli": "^1.3.3",
     "helmet": "4.4.1",
     "hibp": "10.0.1",
     "joi": "^17.3.0",
@@ -64,6 +60,7 @@
     "notevil": "1.3.3",
     "otplib": "12.0.1",
     "passport": "0.4.1",
+    "passport-apple": "^1.1.1",
     "passport-facebook": "^3.0.0",
     "passport-github2": "0.1.12",
     "passport-google-oauth20": "2.0.0",
@@ -78,6 +75,10 @@
     "uuid": "8.3.2"
   },
   "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
     "@types/archiver": "5.1.0",
     "@types/bcryptjs": "^2.4.2",
     "@types/body-parser": "1.19.0",
@@ -100,6 +101,7 @@
     "@types/node-fetch": "^2.5.8",
     "@types/nodemailer": "6.4.0",
     "@types/passport": "1.0.5",
+    "@types/passport-apple": "^1.1.0",
     "@types/passport-facebook": "^2.1.10",
     "@types/passport-github2": "1.2.4",
     "@types/passport-google-oauth20": "2.0.6",
@@ -113,8 +115,9 @@
     "@typescript-eslint/eslint-plugin": "4.14.2",
     "@typescript-eslint/parser": "4.14.2",
     "@vuepress/plugin-back-to-top": "1.8.0",
+    "babel-plugin-module-resolver": "^4.1.0",
     "codecov": "^3.8.1",
-    "cz-conventional-changelog": "3.3.0",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "7.19.0",
     "eslint-config-prettier": "7.2.0",
     "eslint-plugin-jest": "24.1.3",
@@ -128,18 +131,17 @@
     "nodemon": "^2.0.7",
     "prettier": "2.2.1",
     "pretty-quick": "3.1.0",
+    "rimraf": "^3.0.2",
     "supertest": "6.1.3",
     "ts-jest": "26.5.0",
     "ts-node": "^9.1.1",
-    "ts-node-dev": "1.1.1",
+    "ts-node-dev": "^1.1.1",
     "tsconfig-paths": "3.9.0",
+    "tslint": "^6.1.3",
     "typescript": "^4.1.3",
     "vuepress": "1.8.0"
   },
-  "___moduleAliases": {
-    "@shared": "./dist/shared",
-    "@test": "./dist/test"
-  },
+  "moduleAliases": {},
   "eslintConfig": {
     "root": true,
     "rules": {
@@ -163,8 +165,9 @@
     "node_modules",
     "*.js"
   ],
-  "husky": {
+  "_husky": {
     "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
       "pre-commit": "lint-staged"
     }
   },
@@ -179,5 +182,10 @@
     "printWidth": 100,
     "singleQuote": true,
     "trailingComma": "none"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
