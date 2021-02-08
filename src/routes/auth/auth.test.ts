@@ -12,12 +12,12 @@ import {
   HOST,
   PORT
   // ANONYMOUS_USERS_ENABLE
-} from '@shared/config'
-import { generateRandomString, selectAccountByEmail } from '@shared/helpers'
-import { deleteMailHogEmail, mailHogSearch, deleteAccount } from '@test/test-utils'
+} from '../../shared/config'
+import { generateRandomString, selectAccountByEmail } from '../../shared/helpers'
+import { deleteMailHogEmail, mailHogSearch, deleteAccount } from '../../test/test-utils'
 
 import { JWT } from 'jose'
-import { Token } from '@shared/types'
+import { Token } from '../../shared/types'
 import { app } from '../../server'
 import { SuperTest, Test, agent } from 'supertest'
 

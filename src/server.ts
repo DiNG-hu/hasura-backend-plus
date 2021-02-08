@@ -1,4 +1,4 @@
-import { COOKIE_SECRET, AUTH_HAS_ONE_PROVIDER } from '@shared/config'
+import { COOKIE_SECRET, AUTH_HAS_ONE_PROVIDER } from './shared/config'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import { errors } from './errors'

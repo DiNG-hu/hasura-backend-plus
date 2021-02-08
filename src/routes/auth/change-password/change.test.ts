@@ -1,7 +1,7 @@
 import 'jest-extended'
 
-import { generateRandomString } from '@shared/helpers'
-import { account, request } from '@test/test-mock-account'
+import { generateRandomString } from '../../../shared/helpers'
+import { account, request } from '../../../test/test-mock-account'
 
 it('should change the password from the old password', async () => {
   const new_password = generateRandomString()

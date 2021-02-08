@@ -1,4 +1,4 @@
-import { HOST, PORT, AUTO_MIGRATE } from '@shared/config'
+import { HOST, PORT, AUTO_MIGRATE } from './shared/config'
 import { app } from './server'
 import migrate from './migrate'
 

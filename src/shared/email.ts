@@ -7,7 +7,7 @@ import {
   SMTP_SENDER,
   SMTP_USER,
   SMTP_AUTH_METHOD
-} from '@shared/config'
+} from '../shared/config'
 
 import Email from 'email-templates'
 import nodemailer from 'nodemailer'

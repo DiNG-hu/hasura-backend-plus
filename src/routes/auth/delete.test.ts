@@ -2,8 +2,8 @@ import 'jest-extended'
 
 import { SuperTest, Test, agent } from 'supertest'
 
-import { HOST, PORT } from '@shared/config'
-import { registerAccount } from '@test/test-utils'
+import { HOST, PORT } from '../../shared/config'
+import { registerAccount } from '../../test/test-utils'
 
 import { app } from '../../server'
 

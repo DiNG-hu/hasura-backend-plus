@@ -1,12 +1,12 @@
 import 'jest-extended'
 
-import { generateRandomString } from '@shared/helpers'
-import { account, request } from '@test/test-mock-account'
+import { generateRandomString } from '../../../shared/helpers'
+import { account, request } from '../../../test/test-mock-account'
 
-import { mailHogSearch, deleteMailHogEmail } from '@test/test-utils'
+import { mailHogSearch, deleteMailHogEmail } from '../../../test/test-utils'
 import { JWT } from 'jose'
-import { Token } from '@shared/types'
-import { JWT_CLAIMS_NAMESPACE, NOTIFY_EMAIL_CHANGE, EMAILS_ENABLE } from '@shared/config'
+import { Token } from '../../../shared/types'
+import { JWT_CLAIMS_NAMESPACE, NOTIFY_EMAIL_CHANGE, EMAILS_ENABLE } from '../../../shared/config'
 
 let ticket: string
 const new_email = `${generateRandomString()}@${generateRandomString()}.com`

@@ -2,7 +2,7 @@ import { Router } from 'express'
 import requestVerification from './request-verification'
 import directChange from './direct-change'
 import changeVerified from './verify-and-change'
-import { EMAILS_ENABLE, NOTIFY_EMAIL_CHANGE, VERIFY_EMAILS } from '@shared/config'
+import { EMAILS_ENABLE, NOTIFY_EMAIL_CHANGE, VERIFY_EMAILS } from '../../../shared/config'
 
 if (NOTIFY_EMAIL_CHANGE && !EMAILS_ENABLE)
   console.warn(

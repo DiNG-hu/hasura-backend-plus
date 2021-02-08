@@ -1,4 +1,4 @@
-import { AUTH_HAS_ONE_PROVIDER } from '@shared/config'
+import { AUTH_HAS_ONE_PROVIDER } from '../../../shared/config'
 import { Router } from 'express'
 
 import github from './github'

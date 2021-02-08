@@ -1,11 +1,11 @@
 import { Request, Response } from 'express'
-import { asyncWrapper, rotateTicket, selectAccount } from '@shared/helpers'
-import { newJwtExpiry, createHasuraJwt } from '@shared/jwt'
-import { setRefreshToken } from '@shared/cookies'
+import { asyncWrapper, rotateTicket, selectAccount } from '../../../shared/helpers'
+import { newJwtExpiry, createHasuraJwt } from '../../../shared/jwt'
+import { setRefreshToken } from '../../../shared/cookies'
 
 import Boom from '@hapi/boom'
 import { authenticator } from 'otplib'
-import { totpSchema } from '@shared/validation'
+import { totpSchema } from '../../../shared/validation'
 
 async function totpLogin({ body }: Request, res: Response): Promise<void> {
   const { ticket, code } = await totpSchema.validateAsync(body)

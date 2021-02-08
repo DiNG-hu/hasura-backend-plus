@@ -4,10 +4,10 @@ import { PathConfig, createContext, getHeadObject, getKey, hasPermission } from 
 import Boom from '@hapi/boom'
 import sharp from 'sharp'
 import { createHash } from 'crypto'
-import { S3_BUCKET } from '@shared/config'
-import { s3 } from '@shared/s3'
-import { RequestExtended } from '@shared/types'
-import { imgTransformParams } from '@shared/validation'
+import { S3_BUCKET } from '../../shared/config'
+import { s3 } from '../../shared/s3'
+import { RequestExtended } from '../../shared/types'
+import { imgTransformParams } from '../../shared/validation'
 
 export const getFile = async (
   req: RequestExtended,
@@ -123,7 +123,7 @@ export const getFile = async (
 
 function getHash(items: (string | number | Buffer)[]) {
   const hash = createHash('sha256')
-  for (let item of items) {
+  for (const item of items) {
     if (typeof item === 'number') hash.update(String(item))
     else {
       hash.update(item)

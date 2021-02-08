@@ -9,9 +9,9 @@ import {
 } from './utils'
 
 import Boom from '@hapi/boom'
-import { S3_BUCKET } from '@shared/config'
-import { s3 } from '@shared/s3'
-import { RequestExtended } from '@shared/types'
+import { S3_BUCKET } from '../../shared/config'
+import { s3 } from '../../shared/s3'
+import { RequestExtended } from '../../shared/types'
 
 export const deleteFile = async (
   req: RequestExtended,

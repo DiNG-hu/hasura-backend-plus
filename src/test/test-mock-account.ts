@@ -1,7 +1,7 @@
 import { SuperTest, Test, agent } from 'supertest'
-import { TestAccount, registerAccount, deleteAccount } from '@test/test-utils'
+import { TestAccount, registerAccount, deleteAccount } from '../test/test-utils'
 
-import { HOST, PORT } from '@shared/config'
+import { HOST, PORT } from '../shared/config'
 import { getClaims } from '../shared/jwt'
 import { app } from '../server'
 

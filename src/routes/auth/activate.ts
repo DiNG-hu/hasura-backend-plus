@@ -1,13 +1,13 @@
-import { REDIRECT_URL_ERROR, REDIRECT_URL_SUCCESS } from '@shared/config'
+import { REDIRECT_URL_ERROR, REDIRECT_URL_SUCCESS } from '../../shared/config'
 import { Request, Response } from 'express'
 
 import Boom from '@hapi/boom'
-import { activateAccount } from '@shared/queries'
-import { asyncWrapper } from '@shared/helpers'
-import { request } from '@shared/request'
+import { activateAccount } from '../../shared/queries'
+import { asyncWrapper } from '../../shared/helpers'
+import { request } from '../../shared/request'
 import { v4 as uuidv4 } from 'uuid'
-import { verifySchema } from '@shared/validation'
-import { UpdateAccountData } from '@shared/types'
+import { verifySchema } from '../../shared/validation'
+import { UpdateAccountData } from '../../shared/types'
 
 async function activateUser({ query }: Request, res: Response): Promise<unknown> {
   let hasuraData: UpdateAccountData

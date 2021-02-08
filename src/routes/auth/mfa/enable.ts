@@ -1,12 +1,12 @@
-import { asyncWrapper, selectAccountByUserId } from '@shared/helpers'
+import { asyncWrapper, selectAccountByUserId } from '../../../shared/helpers'
 import { Response } from 'express'
-import { updateOtpStatus } from '@shared/queries'
+import { updateOtpStatus } from '../../../shared/queries'
 
 import Boom from '@hapi/boom'
 import { authenticator } from 'otplib'
-import { mfaSchema } from '@shared/validation'
-import { request } from '@shared/request'
-import { RequestExtended } from '@shared/types'
+import { mfaSchema } from '../../../shared/validation'
+import { request } from '../../../shared/request'
+import { RequestExtended } from '../../../shared/types'
 
 async function enableMfa(req: RequestExtended, res: Response): Promise<unknown> {
   if (!req.permission_variables) {

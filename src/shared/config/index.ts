@@ -1,11 +1,16 @@
-// ! Keep dotent.config at the very beginning of the file!!!
-import dotenv from 'dotenv'
+// ! Keep dotenv.config at the very beginning of the file!!!
+
+import * as Dotenv from 'dotenv'
+
+
 // Load '.env' file if production mode, '.env.<NODE_ENV>' otherwise
-const envFile =
-  process.env.NODE_ENV && process.env.NODE_ENV !== 'production'
-    ? `.env.${process.env.NODE_ENV}`
-    : '.env'
-dotenv.config({ path: envFile })
+// const envFile =
+//   process.env.NODE_ENV && process.env.NODE_ENV !== 'production'
+//     ? `.env.${process.env.NODE_ENV}`
+//     : '.env'
+
+Dotenv.config({ path: '.env' })
+
 import Boom from '@hapi/boom'
 
 import { HASURA_ENDPOINT } from './application'

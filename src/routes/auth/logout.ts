@@ -1,14 +1,14 @@
 import { Request, Response } from 'express'
-import { asyncWrapper } from '@shared/helpers'
-import { COOKIE_SECRET } from '@shared/config'
-import { request } from '@shared/request'
+import { asyncWrapper } from '../../shared/helpers'
+import { COOKIE_SECRET } from '../../shared/config'
+import { request } from '../../shared/request'
 import {
   selectRefreshToken,
   deleteAllAccountRefreshTokens,
   deleteRefreshToken
-} from '@shared/queries'
-import { logoutSchema } from '@shared/validation'
-import { AccountData } from '@shared/types'
+} from '../../shared/queries'
+import { logoutSchema } from '../../shared/validation'
+import { AccountData } from '../../shared/types'
 
 interface HasuraData {
   auth_refresh_tokens: { account: AccountData }[]

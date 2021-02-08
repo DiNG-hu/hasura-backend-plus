@@ -1,8 +1,8 @@
 import { Response, NextFunction } from 'express'
-import { COOKIE_SECRET } from '@shared/config'
-import { RefreshTokenMiddleware, RequestExtended, PermissionVariables, Claims } from '@shared/types'
-import { getClaims } from '@shared/jwt'
-import { getPermissionVariablesFromCookie } from '@shared/helpers'
+import { COOKIE_SECRET } from '../shared/config'
+import { RefreshTokenMiddleware, RequestExtended, PermissionVariables, Claims } from '../shared/types'
+import { getClaims } from '../shared/jwt'
+import { getPermissionVariablesFromCookie } from '../shared/helpers'
 
 export function authMiddleware(req: RequestExtended, res: Response, next: NextFunction): void {
   let refresh_token = {

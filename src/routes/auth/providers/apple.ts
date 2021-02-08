@@ -1,9 +1,9 @@
 import { Router } from 'express'
-import { Strategy, Profile } from '@nicokaiser/passport-apple'
+import { Strategy, Profile } from 'passport-apple'
 import Boom from '@hapi/boom'
-import { PROVIDERS } from '@shared/config'
+import { PROVIDERS } from '../../../shared/config'
 import { initProvider } from './utils'
-import { UserData } from '@shared/types'
+import { UserData } from '../../../shared/types'
 
 const transformProfile = ({ id, name, email, photos }: Profile): UserData => ({
   id,

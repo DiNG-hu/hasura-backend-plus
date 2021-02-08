@@ -1,13 +1,13 @@
-import { asyncWrapper } from '@shared/helpers'
+import { asyncWrapper } from '../../../shared/helpers'
 import { Response } from 'express'
-import { selectRefreshToken, updateRefreshToken } from '@shared/queries'
+import { selectRefreshToken, updateRefreshToken } from '../../../shared/queries'
 
 import Boom from '@hapi/boom'
-import { newJwtExpiry, createHasuraJwt, generatePermissionVariables } from '@shared/jwt'
-import { newRefreshExpiry, setCookie } from '@shared/cookies'
-import { request } from '@shared/request'
+import { newJwtExpiry, createHasuraJwt, generatePermissionVariables } from '../../../shared/jwt'
+import { newRefreshExpiry, setCookie } from '../../../shared/cookies'
+import { request } from '../../../shared/request'
 import { v4 as uuidv4 } from 'uuid'
-import { AccountData, RequestExtended } from '@shared/types'
+import { AccountData, RequestExtended } from '../../../shared/types'
 
 interface HasuraData {
   auth_refresh_tokens: { account: AccountData }[]
